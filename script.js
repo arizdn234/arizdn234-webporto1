@@ -137,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 updateNavbar(data.navbar)
                 updateHeader(data.header)
-                // updateHeader(data.header)
                 updateAboutSection(data.about)
                 updateSkillsSection(data.skills)
                 applyTransition(document.querySelector("#Portfolio"), effects.fade, () => updatePortfolio(data.portfolio));
