@@ -157,12 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const languageSelector = document.querySelector("nav #language-selector");
         applyTransition(languageSelector, effects.fade, () => {
             const languageOptions = languageSelector.querySelectorAll("option");
-            
-            languageOptions.forEach((option, index) => {
-                option.innerText = navbar.languageSelector.options[index].text;
+
+            navbar.languageSelector.options.forEach(optionData => {
+                const matchingOption = Array.from(languageOptions).find(
+                    option => option.value === optionData.value
+                );
+
+                if (matchingOption) {
+                    matchingOption.textContent = optionData.text;
+                }
             });
         }, 600);
-
     }
 
     // Update the Header
