@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 updateNavbar(data.navbar)
                 updateHeader(data.header)
+                // updateHeader(data.header)
                 updateAboutSection(data.about)
                 updateSkillsSection(data.skills)
                 applyTransition(document.querySelector("#Portfolio"), effects.fade, () => updatePortfolio(data.portfolio));
@@ -187,6 +188,22 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTransition(document.querySelectorAll(".header-left a")[1], effects.slideX, () => {
             document.querySelectorAll(".header-left a")[1].innerText = header.buttons[1].text;
         }, 300);
+
+        const profileImage = document.getElementById('profile-image');
+
+        profileImage.addEventListener('mouseenter', () => {
+            applyTransition(profileImage, effects.fade, () => {
+                profileImage.src = "images/" + header.imageSecret;
+            }, 1);
+            
+        });
+
+        profileImage.addEventListener('mouseleave', () => {
+            applyTransition(profileImage, effects.fade, () => {
+                // profileImage.src = "images/" + header.imageSecret;
+                profileImage.src = "images/" + header.image;
+            }, 1);
+        });
     }
 
     // Update the About Section

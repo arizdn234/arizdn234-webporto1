@@ -354,6 +354,7 @@ header {
     border-radius: 50%;
     overflow: hidden;
     display: flex;
+    z-index: 12;
 }
 .hero-image img {
     position: relative;
