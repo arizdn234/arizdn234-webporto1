@@ -80,6 +80,7 @@
       }
     ],
     "image": "profile.jpeg",
+    "imageSecret": "profile2.jpg",
     "socialLinks": [
       {
         "icon": "fab fa-instagram",
