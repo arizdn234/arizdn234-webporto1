@@ -27,12 +27,16 @@
       "icon": "fa-solid fa-globe",
       "options": [
         {
+          "text": "Indonesian",
+          "value": "in-ID"
+        },
+        {
           "text": "English",
           "value": "en-EN"
         },
         {
-          "text": "Indonesian",
-          "value": "in-ID"
+          "text": "Javanese",
+          "value": "jv-ID"
         }
       ]
     },
