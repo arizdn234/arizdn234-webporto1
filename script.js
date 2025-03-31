@@ -31,6 +31,8 @@ function applyTransition(element, effect, callback, delay = 0) {
 
 // EmailJS
 window.onload = function() {
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
         emailjs.sendForm('service_qm57f88', 'template_gwbjgkx', this)

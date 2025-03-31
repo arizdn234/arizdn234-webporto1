@@ -11,7 +11,7 @@
     scroll-behavior: smooth;
 }
 
-:root {
+:root-old {
     /* Light Theme */
     --primary: #40d5e9;
     --teal: rgb(92, 218, 176);
@@ -27,7 +27,7 @@
     --transition: .4s ease;
 }
 
-.dark-theme {
+.dark-theme-old {
     /* Dark Theme */
     --primary: #56c6d4;
     --teal: rgb(92, 218, 176);
@@ -40,6 +40,36 @@
     --gradient: linear-gradient(144deg, rgba(64,223,219,1) 0%, rgba(207,51,169,1) 100%);
     --gradient2: linear-gradient(168deg, rgb(55, 65, 214) 0%, rgb(231, 73, 126) 100%);
 
+    --transition: .4s ease;
+}
+
+:root {
+    /* Light Theme */
+    --primary: #4A90E2;         /* Bright Blue */
+    --teal: #3AAFA9;            /* Soft Teal */
+    --background: #FFFFFF;      /* White */
+    --background2: #F1F1F1;     /* Light Gray */
+    --black: #333333;           /* Darker Gray */
+    --light: #D1D1D1;           /* Light Gray */
+    --light2: #F0F0F0;          /* Very Light Gray */
+    --fixedlight: #E0E0E0;      /* Soft Light */
+    --gradient: linear-gradient(145deg, #ff7e5f, #feb47b); /* Soft Sunset Gradient */
+    --gradient2: linear-gradient(145deg, #00c6ff, #0072ff); /* Cool Ocean Gradient */
+    --transition: .4s ease;
+}
+
+.dark-theme {
+    /* Dark Theme */
+    --primary: #4C89D4;         /* Soft Blue */
+    --teal: #1F8A75;            /* Darker Teal */
+    --background: #1F1F1F;      /* Very Dark Gray */
+    --background2: #2A2A2A;     /* Dark Gray */
+    --black: #E6E6E6;           /* Off-White */
+    --light: #D1D1D1;           /* Light Gray */
+    --light2: #484848;          /* Darker Gray */
+    --fixedlight: #E0E0E0;      /* Light Gray */
+    --gradient: linear-gradient(145deg, #ff6a00, #ee0979); /* Neon Glow Gradient */
+    --gradient2: linear-gradient(145deg, #2c6e82, #284ad0); /* Cosmic Purple Gradient */
     --transition: .4s ease;
 }
 
@@ -198,6 +228,7 @@ nav {
     background: var(--gradient);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
     color: var(--fixedlight);
+    z-index: 15;
 }
 .nav-scroll .logo {
     color: var(--fixedlight);
