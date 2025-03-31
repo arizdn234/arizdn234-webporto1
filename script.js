@@ -97,7 +97,7 @@ themeToggleButton.addEventListener('click', function () {
     bodyElement.classList.toggle('light-theme');
 
     const currentTheme = bodyElement.classList.contains('dark-theme') ? 'dark-theme' : 'light-theme';
-    
+
     updateThemeIcon(currentTheme);
 
     localStorage.setItem('preferredTheme', currentTheme);

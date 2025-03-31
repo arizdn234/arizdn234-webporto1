@@ -46,21 +46,25 @@
 :root {
     /* Light Theme */
     --primary: #4A90E2;         /* Bright Blue */
+    --navBlurContrast: rgb(0, 21, 45);         /* Bright Blue */
     --teal: #3AAFA9;            /* Soft Teal */
     --background: #FFFFFF;      /* White */
     --background2: #F1F1F1;     /* Light Gray */
     --black: #333333;           /* Darker Gray */
-    --light: #D1D1D1;           /* Light Gray */
+    --light: #474747;           /* Light Gray */
     --light2: #F0F0F0;          /* Very Light Gray */
     --fixedlight: #E0E0E0;      /* Soft Light */
-    --gradient: linear-gradient(145deg, #ff7e5f, #feb47b); /* Soft Sunset Gradient */
+    --gradient: linear-gradient(-95deg, #00c6ff, #0072ff); /* Cool Ocean Gradient */
     --gradient2: linear-gradient(145deg, #00c6ff, #0072ff); /* Cool Ocean Gradient */
+    --nav: linear-gradient(145deg, #0072ff, #0073ff25); /* Cool Ocean Gradient */
     --transition: .4s ease;
+    --blur: blur(12px);
 }
 
 .dark-theme {
     /* Dark Theme */
     --primary: #4C89D4;         /* Soft Blue */
+    --navBlurContrast: #ff0062;         /* Bright Blue */
     --teal: #1F8A75;            /* Darker Teal */
     --background: #1F1F1F;      /* Very Dark Gray */
     --background2: #2A2A2A;     /* Dark Gray */
@@ -68,16 +72,18 @@
     --light: #D1D1D1;           /* Light Gray */
     --light2: #484848;          /* Darker Gray */
     --fixedlight: #E0E0E0;      /* Light Gray */
-    --gradient: linear-gradient(145deg, #ff6a00, #ee0979); /* Neon Glow Gradient */
-    --gradient2: linear-gradient(145deg, #2c6e82, #284ad0); /* Cosmic Purple Gradient */
+    --gradient: linear-gradient(145deg, #230f0046, #ee0979); /* Neon Glow Gradient */
+    --gradient2: linear-gradient(-95deg, #230f0046, #ee0979); /* Neon Glow Gradient */
+    --nav: linear-gradient(145deg, #99003b, #0073ff25); /* Cool Ocean Gradient */
     --transition: .4s ease;
+    --blur: blur(12px);
 }
 
 ::-moz-selection { /* Code for Firefox */
     color: var(--light2);
     background: var(--primary);
 }
-  
+
 ::selection {
     color: var(--light2);
     background: var(--primary);
@@ -225,7 +231,9 @@ nav {
     z-index: 10;
 }
 .nav-scroll {
-    background: var(--gradient);
+    background: var(--nav);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
     color: var(--fixedlight);
     z-index: 15;
@@ -240,27 +248,27 @@ nav {
     color: var(--black);
 }
 .nav-scroll .language-select-wrapper select {
-    background-color: var(--fixedlight);
-    color: var(--fixedlight);
-    border: 1px solid var(--fixedlight);
+    background-color: var(--navBlurContrast);
+    color: var(--navBlurContrast);
+    border: 1px solid var(--navBlurContrast);
     appearance: none;
 }
 
 .nav-scroll .language-select-wrapper i {
-    color: var(--fixedlight);
+    color: var(--navBlurContrast);
 }
 
 .nav-scroll #language-selector {
-    color: var(--fixedlight);
-    border: 1px solid var(--fixedlight);
+    color: var(--navBlurContrast);
+    border: 1px solid var(--navBlurContrast);
 }
 
 .nav-scroll .language-select-wrapper::after {
-    color: var(--fixedlight);
+    color: var(--navBlurContrast);
 }
 
 .nav-scroll .theme-toggle-button {
-    color: var(--fixedlight);
+    color: var(--navBlurContrast);
     background-color: transparent;
 }
 
@@ -408,7 +416,7 @@ header {
 .moon {
     width: 2rem;
     height: 2rem;
-    background: var(--gradient);
+    background: var(--primary);
     border-radius: 50%;
     position: absolute;
     right: 60px;
