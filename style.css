@@ -47,6 +47,7 @@
     /* Light Theme */
     --primary: #4A90E2;         /* Bright Blue */
     --navBlurContrast: rgb(0, 21, 45);         /* Bright Blue */
+    --navBlurContrastBg: rgba(0, 21, 45, 0.331);         /* Bright Blue */
     --teal: #3AAFA9;            /* Soft Teal */
     --background: #FFFFFF;      /* White */
     --background2: #F1F1F1;     /* Light Gray */
@@ -65,6 +66,7 @@
     /* Dark Theme */
     --primary: #4C89D4;         /* Soft Blue */
     --navBlurContrast: #ff0062;         /* Bright Blue */
+    --navBlurContrastBg: #ff00623c;         /* Bright Blue */
     --teal: #1F8A75;            /* Darker Teal */
     --background: #1F1F1F;      /* Very Dark Gray */
     --background2: #2A2A2A;     /* Dark Gray */
@@ -158,29 +160,38 @@ img {
     display: inline-block;
     width: fit-content;
     padding: 16px 32px;
-    border: 2px solid transparent;
+    border: 2px solid var(--navBlurContrast);
     cursor: pointer;
     background: var(--primary);
     color: var(--black);
-    border-radius: 1rem;
+    border-radius: 7px;
     font-size: 18px;
     transition: var(--transition);
+    border-left: 4px solid var(--navBlurContrast);
+    border-bottom: 4px solid var(--navBlurContrast); 
 }
 .btn:hover {
     background: var(--gradient2);
-    border-color: var(--gradient);
+    border: 2px solid var(--navBlurContrast);
+    /* border-color: var(--gradient);
     transform: translateY(-.2rem);
-    box-shadow: 0 0 1rem var(--primary);
+    box-shadow: 0 0 1rem var(--primary); */
 }
 .btn-white {
     background: transparent;
     border-color: var(--black);
+    border-radius: 7px;
+    box-sizing: border-box;
+    border-left: 4px solid var(--navBlurContrast);
+    border-bottom: 4px solid var(--navBlurContrast); 
 }
 .btn-white:hover {
     background: var(--gradient2);
-    color: var(--background);
+    border: 2px solid var(--navBlurContrast);
+    /* border-bottom: 5px solid var(--navBlurContrast); */
+    /* color: var(--background);
     border-color: var(--background);
-    box-shadow: 0 0 1rem var(--primary);
+    box-shadow: 0 0 1rem var(--primary); */
 }
 .btn-sm {
     padding: 10px 20px;
@@ -196,13 +207,16 @@ img {
     background: var(--background3);
     padding: 1.5rem;
     border: 2px solid transparent;
-    border-radius: 1.2rem;
+    border-radius: 9px;
     transition: var(--transition);
+    box-sizing: border-box;
+    border-left: 5px solid var(--navBlurContrast); 
+    border-bottom: 5px solid var(--navBlurContrast); 
 }
 .card:hover {
     background: transparent;
-    border-color: var(--background);
-    transform: translateY(-.2rem);
+    border: 2px solid var(--navBlurContrast);
+    /* border-bottom: 8px solid var(--navBlurContrast); */
 }
 .card-primary {
     background: transparent;
@@ -261,6 +275,17 @@ nav {
 .nav-scroll #language-selector {
     color: var(--navBlurContrast);
     border: 1px solid var(--navBlurContrast);
+    border-bottom: 3px solid var(--navBlurContrast);
+    font-variant: normal;
+    border-left: 3px solid var(--navBlurContrast);
+    border-bottom: 3px solid var(--navBlurContrast);
+}
+
+.nav-scroll #language-selector:hover {
+    background-color: var(--navBlurContrastBg);
+    color: var(--navBlurContrast);
+    border: 1px solid var(--navBlurContrast);
+    /* border-bottom: 3px solid var(--navBlurContrast); */
 }
 
 .nav-scroll .language-select-wrapper::after {
@@ -563,11 +588,13 @@ header {
     flex-direction: column;
     gap: .8rem;
     background: var(--light2);
+    border-top: 2px solid var(--navBlurContrast);
+    border-right: 2px solid var(--navBlurContrast);
 }
 .project:hover {
     transition: var(--transition);
-    border-color: var(--primary);
     background: var(--background);
+    border: 2px solid var(--navBlurContrast);
 }
 .project img {
     border-radius: .8rem;
