@@ -757,13 +757,15 @@ form input:focus, textarea:focus{
 /* --- footer --- */
 footer {
     background: var(--gradient2);
-    height: 5rem;
+    height: auto;
+    padding: 1.5rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--fixedlight);
     transition: var(--transition);
+    margin-bottom: 0%;
 }
 .footer-container i {
     color: red;
@@ -1037,6 +1039,11 @@ footer {
         flex-direction: row;
         justify-content: center;
         margin-bottom: 2rem;
+    }
+
+    /* footer */
+    .footer {
+        padding-bottom: 2em;
     }
 }
 
