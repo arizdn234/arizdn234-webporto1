@@ -655,6 +655,7 @@ header {
 
 .skill-group {
     min-height: 110px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
