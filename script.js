@@ -514,12 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal(contentHTML, section = '') {
         const effect = effects.fade;
 
-        // modal.classList.add(effect.in);
-
-        // setTimeout(() => {
-        //     modal.style.display = 'block';
-        //     modal.classList.remove(effect.in);
-        // }, 200);
+        document.body.classList.add('modal-open');
 
         applyTransition(modal, effect, () => {
             modal.style.display = 'block';
@@ -548,6 +543,7 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTransition(modal, effect, () => {
             modal.style.display = 'none';
             modalBody.innerHTML = '';
+            document.body.classList.remove('modal-open');
             modalBody.classList.remove(effects.zoom.in);
         });
     }
