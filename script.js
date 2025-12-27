@@ -202,21 +202,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update the Header
     function updateHeader(header) {
-        applyTransition(document.querySelector(".header-left h1"), effects.slide.up, () => {
-            document.querySelector(".header-left h1").innerText = header.greeting;
-        }, 0);
+        const title = document.querySelector(".header-left h1");
+        const desc  = document.querySelector(".header-left p");
+        const btns  = document.querySelectorAll(".header-left a");
 
-        applyTransition(document.querySelector(".header-left p"), effects.fade, () => {
-            document.querySelector(".header-left p").innerText = header.description;
+        applyTransition(title, effects.slide.up, () => {
+            title.innerText = header.greeting;
+        });
+
+        applyTransition(desc, effects.fade, () => {
+            desc.innerText = header.description;
         }, 100);
         
-        applyTransition(document.querySelectorAll(".header-left a")[0], effects.slide.left, () => {
-            document.querySelectorAll(".header-left a")[0].innerText = header.buttons[0].text;
+        // CV BUTTON
+        applyTransition(btns[0], effects.slide.left, () => {
+            btns[0].innerText = header.buttons[0].text;
+            btns[0].href = header.buttons[0].href;
+
+            // 👇 INTERCEPT CLICK
+            btns[0].onclick = (e) => {
+                e.preventDefault();
+                openCV(header.buttons[0]);
+            };
         }, 250);
-    
-        applyTransition(document.querySelectorAll(".header-left a")[1], effects.slide.left, () => {
-            document.querySelectorAll(".header-left a")[1].innerText = header.buttons[1].text;
+
+        // CONTACT BUTTON
+        applyTransition(btns[1], effects.slide.left, () => {
+            btns[1].innerText = header.buttons[1].text;
+            btns[1].href = header.buttons[1].href;
+            btns[1].onclick = null; // default behavior
         }, 350);
+
         const profileImage = document.getElementById('profile-image');
 
         // profileImage.addEventListener('mouseenter', () => {
@@ -610,13 +626,42 @@ document.addEventListener("DOMContentLoaded", () => {
         openModal(content);
     }
 
-    function openCV(cvPath) {
+    function openCV(data) {
+        const {
+            type = 'PDF',
+            lang = '',
+            updated = '',
+            pages = ''
+        } = data.meta;
+
+        const metaText = [
+            type,
+            lang && `Language: ${lang}`,
+            pages && `${pages} pages`,
+            updated && `Last updated at ${updated}`
+        ].filter(Boolean).join(' | ');
+
         const content = `
             <h2>Curriculum Vitae</h2>
-            <iframe src="${cvPath}" width="100%" height="500px" style="border:none;"></iframe>
+            <p style="
+                margin: 1rem;
+                font-size:0.85rem;
+                opacity:0.7;
+            ">
+                ${metaText}
+            </p>
+
+            <iframe 
+                src="${data.href}" 
+                width="100%" 
+                height="500px" 
+                style="border:none;border-radius:8px;"
+            ></iframe>
         `;
+
         openModal(content);
     }
+
 
     if (!localStorage.getItem('hide-onboarding-info')) {
         openModal(firstInfoContent);

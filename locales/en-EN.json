@@ -75,6 +75,12 @@
       {
         "text": "Curriculum Vitae",
         "href": "BE-01-EN.pdf",
+        "meta": {
+          "type": "PDF",
+          "lang": "English",
+          "updated": "Oct 2024",
+          "pages": 2
+        },
         "class": "btn btn-white"
       },
       {
