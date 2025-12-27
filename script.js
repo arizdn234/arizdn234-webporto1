@@ -8,16 +8,44 @@ function randomizer(min, max) {
 
 // effect list
 const effects = {
-    fade: { in: "fade-in", out: "fade-out" },
-    slide: { in: "slide-in", out: "slide-out" },
-    slideX: { out: 'slide-out-left', in: 'slide-in-right' },
-    slideY: { out: 'slide-out-up', in: 'slide-in-down' },
-    zoom: { in: "zoom-in", out: "zoom-out" }
+    fade: {
+        in: 'fade-in',
+        out: 'fade-out'
+    },
+
+    zoom: {
+        in: 'zoom-in',
+        out: 'zoom-out'
+    },
+
+    slide: {
+        up: {
+            in: 'slide-in-down',
+            out: 'slide-out-up'
+        },
+        down: {
+            in: 'slide-in-up',
+            out: 'slide-out-down'
+        },
+        left: {
+            in: 'slide-in-right',
+            out: 'slide-out-left'
+        },
+        right: {
+            in: 'slide-in-left',
+            out: 'slide-out-right'
+        }
+    }
 };
 
 // Transition handler
-function applyTransition(element, effect, callback, delay = 0) {
+function applyTransition(element, effect, callback, delay = 0, bypassTransitionDelay = false) {
     element.classList.add(effect.out);
+    transitionDelay = 300;
+    if (bypassTransitionDelay) {
+        transitionDelay = 0;
+    }
+    
     setTimeout(() => {
         callback();
         element.classList.remove(effect.out);
@@ -25,24 +53,24 @@ function applyTransition(element, effect, callback, delay = 0) {
 
         setTimeout(() => {
             element.classList.remove(effect.in);
-        }, 500);
-    }, 500 + delay);
+        }, 300);
+    }, transitionDelay + delay);
 }
 
 // EmailJS
-window.onload = function() {
-    document.getElementById("year").textContent = new Date().getFullYear();
+// window.onload = function() {
+//     document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        emailjs.sendForm('service_qm57f88', 'template_gwbjgkx', this)
-            .then(() => {
-                alert('Email sent successfully!');
-            }, (error) => {
-                alert('Failed to send email, please try again.');
-            });
-    });
-}
+//     document.getElementById('contact-form').addEventListener('submit', function(event) {
+//         event.preventDefault();
+//         emailjs.sendForm('service_qm57f88', 'template_gwbjgkx', this)
+//             .then(() => {
+//                 alert('Email sent successfully!');
+//             }, (error) => {
+//                 alert('Failed to send email, please try again.');
+//             });
+//     });
+// }
 
 // menu (mobile view)
 const menuButton = document.querySelector('.menu-button');
@@ -108,7 +136,7 @@ function updateThemeIcon(theme) {
     const newIconClass = theme === 'dark-theme' ? 'fa-moon' : 'fa-sun';
     const oldIconClass = theme === 'dark-theme' ? 'fa-sun' : 'fa-moon';
 
-    applyTransition(themeIcon, effects.slideY, () => {
+    applyTransition(themeIcon, effects.slide.down, () => {
         themeIcon.classList.remove(oldIconClass); 
         themeIcon.classList.add(newIconClass);    
     });
@@ -142,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateAboutSection(data.about)
                 updateSkillsSection(data.skills)
                 applyTransition(document.querySelector("#Portfolio"), effects.fade, () => updatePortfolio(data.portfolio));
-                applyTransition(document.querySelector("#Contact"), effects.fade, () => updateContactSection(data.contact));
+                // applyTransition(document.querySelector("#Contact"), effects.fade, () => updateContactSection(data.contact));
             })
             .catch(error => console.error('Error loading JSON:', error));
     }
@@ -151,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateNavbar(navbar) {
         const navLinks = document.querySelectorAll("nav .nav-links li a");
         navLinks.forEach((link, index) => {
-            applyTransition(link, effects.slideX, () => {
+            applyTransition(link, effects.slide.left, () => {
                 link.innerText = navbar.links[index].text;
             }, index * 100);
         });
@@ -174,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update the Header
     function updateHeader(header) {
-        applyTransition(document.querySelector(".header-left h1"), effects.slideY, () => {
+        applyTransition(document.querySelector(".header-left h1"), effects.slide.up, () => {
             document.querySelector(".header-left h1").innerText = header.greeting;
         }, 0);
 
@@ -182,13 +210,13 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".header-left p").innerText = header.description;
         }, 100);
         
-        applyTransition(document.querySelectorAll(".header-left a")[0], effects.slideX, () => {
+        applyTransition(document.querySelectorAll(".header-left a")[0], effects.slide.left, () => {
             document.querySelectorAll(".header-left a")[0].innerText = header.buttons[0].text;
         }, 250);
     
-        applyTransition(document.querySelectorAll(".header-left a")[1], effects.slideX, () => {
+        applyTransition(document.querySelectorAll(".header-left a")[1], effects.slide.left, () => {
             document.querySelectorAll(".header-left a")[1].innerText = header.buttons[1].text;
-        }, 300);
+        }, 350);
         const profileImage = document.getElementById('profile-image');
 
         // profileImage.addEventListener('mouseenter', () => {
@@ -455,7 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
             });
             
-            applyTransition(tabElement, effects.slideY, () => {
+            applyTransition(tabElement, effects.slide.down, () => {
                 tabsContainer.appendChild(tabElement);
             }, index * 100);
         });
@@ -466,35 +494,108 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalBody = modal.querySelector('.modal-body');
     const modalClose = modal.querySelector('.modal-close');
 
-    // Open modal with content (HTML string)
-    function openModal(contentHTML) {
-        modalBody.innerHTML = contentHTML;
-        modal.style.display = 'block';
+    // Open modal
+    function openModal(contentHTML, section = '') {
+        const effect = effects.fade;
+
+        // modal.classList.add(effect.in);
+
+        // setTimeout(() => {
+        //     modal.style.display = 'block';
+        //     modal.classList.remove(effect.in);
+        // }, 200);
+
+        applyTransition(modal, effect, () => {
+            modal.style.display = 'block';
+            modalBody.innerHTML = contentHTML;
+            modal.classList.remove(effect.in);
+        }, 1, true);
+
+        setTimeout(() => {
+            switch (section) {
+                case 'SKILL_BADGES':
+                    animateSkillContent();
+                    break;
+            
+                default:
+                    break;
+            }
+        }, 1);
     }
 
     // Close modal
-    function closeModal() {
-        modal.style.display = 'none';
-        modalBody.innerHTML = '';
+    function closeModal(html) {
+        const effect = effects.fade;
+
+        modalBody.classList.add(effects.zoom.in);
+
+        applyTransition(modal, effect, () => {
+            modal.style.display = 'none';
+            modalBody.innerHTML = '';
+            modalBody.classList.remove(effects.zoom.in);
+        });
     }
 
     // Close modal when clicking close button
     modalClose.addEventListener('click', closeModal);
 
     // Close modal when clicking outside content
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+    modal.addEventListener('click', (e) => {
+        if (!modalBody.contains(e.target)) {
+            closeModal(null);
+        }
     });
 
     function openSkillGroup(group) {
         const content = `
-            <h2>${group.title}</h2>
-            <p>${group.description}</p>
-            <div class="skill-badges">
+            <h2 class="m-title">${group.title}</h2>
+            <p class="m-desc">${group.description}</p>
+            <div class="skill-badges m-badges">
                 ${group.skills.map(skill => `<span class="badge">${skill}</span>`).join('')}
             </div>
         `;
-        openModal(content);
+        openModal(content, 'SKILL_BADGES');
+    }
+
+    function animateSkillContent() {
+        const title = modalBody.querySelector('.m-title');
+        const desc = modalBody.querySelector('.m-desc');
+
+        if (title) title.classList.add(effects.fade.in);
+        if (desc) {
+            setTimeout(() => {
+                desc.classList.add(effects.fade.in);
+            }, 1);
+        }
+
+        setTimeout(() => {
+            title?.classList.remove(effects.fade.in);
+            desc?.classList.remove(effects.fade.in);
+        }, 600);
+
+        animateSkillBadges();
+    }
+
+    function animateSkillBadges() {
+        const badges = modalBody.querySelectorAll('.skill-badges .badge');
+        if (!badges.length) return;
+
+        const effect = effects.slide.down;
+
+        badges.forEach((badge, index) => {
+            // initial state
+            badge.style.opacity = 0;
+
+            setTimeout(() => {
+                badge.classList.add(effect.in);
+            }, index * 100);
+
+            // cleanup
+            setTimeout(() => {
+                badge.classList.remove(effect.in);
+                badge.style.opacity = '';
+            }, index * 100 + 500);
+        });
     }
 
     function openProject(project) {
@@ -517,6 +618,18 @@ document.addEventListener("DOMContentLoaded", () => {
         openModal(content);
     }
 
+    if (!localStorage.getItem('hide-onboarding-info')) {
+        openModal(firstInfoContent);
+
+        modalBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-hide-info')) {
+            localStorage.setItem('hide-onboarding-info', 'true');
+            closeModal(null);
+        }
+    });
+
+    }
+
     // Retrieve saved language from localStorage or set default to 'en-EN'
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'en-EN';
     if (languageSelector) {
@@ -533,3 +646,23 @@ document.addEventListener("DOMContentLoaded", () => {
         loadContent(selectedLang);
     });
 });
+
+
+const firstInfoContent = `
+    <h2>Welcome 👋</h2>
+    <p>
+        All <strong>cards</strong> and <strong>buttons</strong> on this page
+        are <strong>clickable</strong> and will show more details.
+    </p>
+
+    <button class="btn-hide-info" style="
+        margin-top:1rem;
+        padding:.6rem 1.2rem;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+    ">
+        Got it, don’t show again
+    </button>
+`;
+
