@@ -53,7 +53,7 @@
 
 :root {
     /* Light Theme */
-    --primary: #4a90e2;
+    --primary: #0072ff;
     /* Bright Blue */
     --navBlurContrast: rgb(0, 21, 45);
     /* Bright Blue */
@@ -89,7 +89,7 @@
 
 .dark-theme {
     /* Dark Theme */
-    --primary: #4c89d4;
+    --primary: #ee0979;
     /* Soft Blue */
     --navBlurContrast: #ff0062;
     /* Bright Blue */
@@ -244,7 +244,7 @@ img {
     padding: 16px 32px;
     border: 2px solid var(--navBlurContrast);
     cursor: pointer;
-    background: var(--primary);
+    background: var(--gradient2);
     color: var(--black);
     border-radius: 7px;
     font-size: 18px;
@@ -804,9 +804,12 @@ header {
 }
 
 .tab-active {
-    background: var(--primary);
+    /* background: var(--primary);
     border-color: var(--background);
-    color: var(--background);
+    color: var(--background); */
+    background: var(--gradient2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .portfolio-projects {
@@ -838,10 +841,6 @@ header {
     display: flex;
     gap: 1rem;
     align-items: center;
-}
-
-.project-action a:first-child {
-    color: var(--background);
 }
 
 /* --- contact --- */
