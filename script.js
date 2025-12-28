@@ -152,6 +152,13 @@ const removeActive = () => {
     });
 };
 
+function truncateText(text, maxChars = 120) {
+  if (!text || text.trim() === "") return "N/A";
+  return text.length > maxChars
+    ? text.slice(0, maxChars).trim() + "..."
+    : text;
+}
+
 // Language loader
 document.addEventListener("DOMContentLoaded", () => {
     const languageSelector = document.getElementById("language-selector");
@@ -421,28 +428,33 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Project description
             const descElement = document.createElement("p");
-            descElement.innerText = project.description?.trim() === "" ? 'N/A' : project.description.split('.')[0].trim()+".";
+            descElement.innerText = truncateText(project.description, 90);
             projectCard.appendChild(descElement);
-            
-            // Project action buttons
+
+            const footer = document.createElement("div");
+            footer.className = "project-footer";
+
             const actionContainer = document.createElement("div");
             actionContainer.className = "project-action";
+
             project.links.forEach(link => {
                 const linkElement = document.createElement("a");
-                linkElement.href = link.href?.trim() === "" ? '#' : link.href;
+                linkElement.href = link.href?.trim() === "" ? "#" : link.href;
                 linkElement.className = link.class;
-                linkElement.target = `_blank`;
+                linkElement.target = "_blank";
                 linkElement.innerText = link.text;
                 actionContainer.appendChild(linkElement);
             });
-            projectCard.appendChild(actionContainer);
 
-            // Project helper text
-            const helper_text = document.createElement("p");
-            helper_text.className = "skill-group-helper-text";
-            helper_text.innerText = project.helper_text;
-            projectCard.appendChild(helper_text);
-            
+            const helperText = document.createElement("p");
+            helperText.className = "project-helper-text";
+            helperText.innerText = project.helper_text;
+
+            footer.appendChild(actionContainer);
+            footer.appendChild(helperText);
+
+            projectCard.appendChild(footer);
+
             applyTransition(projectCard, effects.fade, () => {
                 projectsContainer.appendChild(projectCard);
             }, index * 200);

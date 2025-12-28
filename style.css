@@ -839,6 +839,8 @@ header {
     border-top: 2px solid var(--navBlurContrast);
     border-right: 2px solid var(--navBlurContrast);
     cursor: pointer;
+    height: 440px;
+    overflow: hidden;
 }
 
 .project:hover {
@@ -851,11 +853,22 @@ header {
     border-radius: 0.8rem;
 }
 
+.project-footer {
+    margin-top: auto;
+}
+
 .project-action {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
+
+.project-helper-text {
+    margin-top: .6rem;
+    font-size: .8rem;
+    opacity: .7;
+}
+
 
 /* --- contact --- */
 .container-contact {

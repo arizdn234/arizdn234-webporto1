@@ -1,0 +1,89 @@
+{
+  "name": "star",
+  "id": "uni-sell",
+  "helper_text": "Tap the card for more details",
+  "title": "Integrated E-Commerce Platform",
+  "image": "uni-sell-1.svg",
+  "description": "A full-featured e-commerce platform supporting physical and digital products. Built with Laravel for backend services, Vue.js for a responsive frontend, and Express.js for API microservices. Containerized using Docker to ensure scalable and consistent deployment. Key features include product management, real-time inventory, secure checkout, payment processing, and user reviews.",
+  "project_type": "Learning",
+  "role": "Individual Contributor (Learning Project)",
+
+  "summary": "A learning-focused full-stack e-commerce project aimed at understanding backend–frontend integration, MVC architecture, and core business flows such as product management, checkout, and order processing.",
+
+  "problem_statement": "Learning how to design and implement a complete e-commerce system using a modern PHP framework, while managing frontend integration and development environment consistency.",
+
+  "stack": {
+    "backend": ["Laravel"],
+    "frontend": ["Vue.js", "Vite", "TailwindCSS"],
+    "database": ["MySQL"],
+    "containerization": "Docker (Laravel Sail)"
+  },
+
+  "architecture": {
+    "style": "MVC",
+    "notes": [
+      "Monolithic Laravel application",
+      "Vue.js integrated via Vite",
+      "Laravel Sail for local Docker environment",
+      "SSR-style Blade views with Vue components"
+    ]
+  },
+
+  "features": [
+    "Product and category management",
+    "Shopping cart and secure checkout",
+    "Multiple payment gateway integration",
+    "Real-time order and inventory tracking",
+    "User reviews and ratings"
+  ],
+
+  "contribution": {
+    "scope": ["Backend", "Frontend", "Infrastructure", "Database"],
+    "details": [
+      "Implemented backend logic using Laravel MVC",
+      "Built frontend components with Vue.js, Vite, and TailwindCSS",
+      "Configured Vite for asset bundling and development workflow",
+      "Managed database schema and Docker-based local environment using Laravel Sail"
+    ]
+  },
+
+  "testing": {
+    "level": [],
+    "notes": "No automated testing implemented; testing performed manually during development."
+  },
+
+  "tradeoffs": [
+    "Chose monolithic architecture for simplicity and faster learning",
+    "Skipped automated testing to focus on feature implementation and architecture understanding"
+  ],
+
+  "impact": [
+    "Improved understanding of full-stack web development",
+    "Hands-on experience with Laravel MVC architecture",
+    "Learned Docker-based local development workflow",
+    "Better grasp of e-commerce domain logic"
+  ],
+
+  "scale": {
+    "users": "Not defined",
+    "environment": "Local development"
+  },
+
+  "deployment": {
+    "status": "Not deployed",
+    "notes": "Built as a local learning project"
+  },
+
+  "links": [
+    {
+      "text": "Live",
+      "href": "https://github.com/arizdn234/uni-sell",
+      "class": "btn btn-sm"
+    },
+    {
+      "text": "Github",
+      "href": "https://github.com/arizdn234/uni-sell",
+      "class": "btn btn-sm btn-white"
+    }
+  ]
+}
