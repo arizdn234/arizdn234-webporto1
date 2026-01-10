@@ -45,7 +45,7 @@ function applyTransition(element, effect, callback, delay = 0, bypassTransitionD
     if (bypassTransitionDelay) {
         transitionDelay = 0;
     }
-    
+
     setTimeout(() => {
         callback();
         element.classList.remove(effect.out);
@@ -78,10 +78,10 @@ const menuBar = document.querySelector('.menu-bar');
 const menuIcon = menuButton.querySelector('i');
 const footerSection = document.querySelector('body footer');
 
-menuButton.addEventListener('click', function() {
+menuButton.addEventListener('click', function () {
     menuBar.classList.toggle('menu-none');
     menuButton.classList.toggle('menu-btn-none');
-    
+
     if (menuBar.classList.contains('menu-none')) {
         // footer if mobile view (onclick)
         menuIcon.classList.remove('fa-chevron-down');
@@ -137,8 +137,8 @@ function updateThemeIcon(theme) {
     const oldIconClass = theme === 'dark-theme' ? 'fa-sun' : 'fa-moon';
 
     applyTransition(themeIcon, effects.slide.down, () => {
-        themeIcon.classList.remove(oldIconClass); 
-        themeIcon.classList.add(newIconClass);    
+        themeIcon.classList.remove(oldIconClass);
+        themeIcon.classList.add(newIconClass);
     });
 
     themeToggleButton.prepend(themeIcon);
@@ -153,16 +153,16 @@ const removeActive = () => {
 };
 
 function truncateText(text, maxChars = 120) {
-  if (!text || text.trim() === "") return "N/A";
-  return text.length > maxChars
-    ? text.slice(0, maxChars).trim() + "..."
-    : text;
+    if (!text || text.trim() === "") return "N/A";
+    return text.length > maxChars
+        ? text.slice(0, maxChars).trim() + "..."
+        : text;
 }
 
 // Language loader
 document.addEventListener("DOMContentLoaded", () => {
     const languageSelector = document.getElementById("language-selector");
-    
+
     let isExpanded = false;
     const toggleButton = document.getElementById("toggle-button");
     const aboutTextContainer = document.querySelector(".about-text-container .about-text");
@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the Header
     function updateHeader(header) {
         const title = document.querySelector(".header-left h1");
-        const desc  = document.querySelector(".header-left p");
-        const btns  = document.querySelectorAll(".header-left a");
+        const desc = document.querySelector(".header-left p");
+        const btns = document.querySelectorAll(".header-left a");
 
         applyTransition(title, effects.slide.up, () => {
             title.innerText = header.greeting;
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTransition(desc, effects.fade, () => {
             desc.innerText = header.description;
         }, 100);
-        
+
         // CV BUTTON
         applyTransition(btns[0], effects.slide.left, () => {
             btns[0].innerText = header.buttons[0].text;
@@ -236,8 +236,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // CONTACT BUTTON
         applyTransition(btns[1], effects.slide.left, () => {
             btns[1].innerText = header.buttons[1].text;
-            btns[1].href = header.buttons[1].href;
-            btns[1].onclick = null; // default behavior
+            // btns[1].href = header.buttons[1].href;
+
+            btns[1].onclick = (e) => {
+                e.preventDefault();
+                openContactConfirm(header.buttons[1]);
+
+            };
         }, 350);
 
         const profileImage = document.getElementById('profile-image');
@@ -254,6 +259,26 @@ document.addEventListener("DOMContentLoaded", () => {
         //     }, 1);
         // });
 
+        const socialContainer = document.getElementById('social-links');
+
+        if (socialContainer && header.socialLinks) {
+            socialContainer.innerHTML = '';
+
+            header.socialLinks.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.setAttribute('aria-label', link.label || '');
+
+                const icon = document.createElement('i');
+                icon.className = link.icon;
+
+                a.appendChild(icon);
+                socialContainer.appendChild(a);
+            });
+        }
+
     }
 
     // Update the About Section
@@ -261,22 +286,22 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTransition(document.querySelector("#About h2"), effects.fade, () => {
             document.querySelector("#About h2").innerText = about.title;
         });
-    
+
         const aboutCards = document.querySelectorAll(".about-card");
         aboutCards.forEach((card, index) => {
             applyTransition(card.querySelector("span i"), effects.fade, () => {
                 card.querySelector("span i").className = about.cards[index].icon;
             }, index * 100);
-    
+
             applyTransition(card.querySelector("h5"), effects.fade, () => {
                 card.querySelector("h5").innerText = about.cards[index].title;
             }, index * 100 + 100);
-    
+
             applyTransition(card.querySelector("small"), effects.fade, () => {
                 card.querySelector("small").innerText = about.cards[index].description;
             }, index * 100 + 200);
         });
-        
+
         applyTransition(document.querySelector(".about-container h3 ~ *"), effects.fade, () => {
             initializeToggleButton(about.paragraphs, about.paragraphs.slice(0, 2), about.expandButton);
         }, aboutCards.length * 100 + 300);
@@ -285,10 +310,21 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(".about-container h3").innerText = about.subtitle;
         }, aboutCards.length * 100 + 300);
 
-        applyTransition(document.querySelector(".about-container a:nth-of-type(1)"), effects.zoom, () => {
-            document.querySelector(".about-container a:nth-of-type(1)").innerText = about.ctaButton.text;
-        }, aboutCards.length * 100 + 300);
-    }    
+        // applyTransition(document.querySelector(".about-container a:nth-of-type(1)"), effects.zoom, () => {
+        //     document.querySelector(".about-container a:nth-of-type(1)").innerText = about.ctaButton.text;
+        // }, aboutCards.length * 100 + 300);
+
+        // CONTACT BUTTON
+        ctaButtonEle = document.querySelector(".about-container a:nth-of-type(1)");
+        applyTransition(ctaButtonEle, effects.zoom, () => {
+            ctaButtonEle.innerText = about.ctaButton.text;
+
+            ctaButtonEle.onclick = (e) => {
+                e.preventDefault();
+                openContactConfirm(about.ctaButton);
+            };
+        }, 350);
+    }
 
     // Initialize Toggle Button for the About Section
     function initializeToggleButton(paragraphs, visibleParagraphs, expandButton) {
@@ -301,15 +337,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderAboutText(paragraphs, visibleParagraphs, expandButton) {
         aboutTextContainer.innerHTML = '';
         const paragraphsToShow = isExpanded ? paragraphs : visibleParagraphs;
-        
+
         paragraphsToShow.forEach(paragraph => {
             const p = document.createElement('p');
             p.innerText = paragraph;
             aboutTextContainer.appendChild(p);
         });
 
-        toggleButton.innerText = isExpanded 
-            ? expandButton.expandFalse 
+        toggleButton.innerText = isExpanded
+            ? expandButton.expandFalse
             : expandButton.expandTrue;
     }
 
@@ -393,39 +429,39 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the Portfolio Section
     function updatePortfolio(portfolio) {
         const portfolioSection = document.querySelector("#Portfolio");
-        
+
         // Update title
         applyTransition(portfolioSection.querySelector("h2"), effects.fade, () => {
             portfolioSection.querySelector("h2").innerText = portfolio.title;
         });
-        
+
         // Update description
         applyTransition(portfolioSection.querySelector("p"), effects.fade, () => {
             portfolioSection.querySelector("p").innerText = portfolio.description;
         }, 100);
-        
+
         // Update projects
         const projectsContainer = portfolioSection.querySelector(".portfolio-projects");
         projectsContainer.innerHTML = "";
-        
+
         portfolio.projects.forEach((project, index) => {
             const projectCard = document.createElement("div");
             projectCard.className = `project card`;
             projectCard.dataset.name = project.name;
             projectCard.style.display = 'none';
-            
+
             // Project image
             const imgElement = document.createElement("img");
-            imgElement.src = project.image?.trim() === "" ? 'images/no-image.svg' : "images/"+project.image;
+            imgElement.src = project.image?.trim() === "" ? 'images/no-image.svg' : "images/" + project.image;
             imgElement.alt = project.title?.trim() === "" ? 'Untitled' : project.title;
             imgElement.title = project.title?.trim() === "" ? 'Untitled' : project.title;
             projectCard.appendChild(imgElement);
-            
+
             // Project title
             const titleElement = document.createElement("h4");
             titleElement.innerText = project.title?.trim() === "" ? 'Untitled' : project.title;
             projectCard.appendChild(titleElement);
-            
+
             // Project description
             const descElement = document.createElement("p");
             descElement.innerText = truncateText(project.description, 90);
@@ -459,15 +495,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 projectsContainer.appendChild(projectCard);
             }, index * 200);
         });
-        
+
         setTimeout(() => {
             const defaultTab = 'star';
             const projects = document.querySelectorAll(".project");
-    
+
             if (projects.length === 0) {
                 console.warn("No projects found.");
             }
-    
+
             projects.forEach(project => {
                 let projectName = project.getAttribute('data-name');
                 if (projectName === defaultTab) {
@@ -475,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     project.classList.add('fade-in');
                     setTimeout(() => {
                         project.style.display = 'flex';
-                    }, 400); 
+                    }, 400);
                 } else {
                     project.classList.remove('fade-in');
                     project.classList.add('fade-out');
@@ -485,18 +521,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }, 1500);
-    
+
         // Update tabs
         const tabsContainer = portfolioSection.querySelector(".portfolio-tabs");
         tabsContainer.innerHTML = "";
-        
+
         portfolio.tabs.forEach((tab, index) => {
             const tabElement = document.createElement("div");
             tabElement.className = `tab btn btn-sm btn-white ${tab.class || ""}`;
-            
+
             tabElement.dataset.name = tab.name;
             tabElement.innerText = tab.text;
-       
+
             // Add event listener to each tab
             tabElement.addEventListener('click', (event) => {
                 removeActive();
@@ -511,7 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         project.classList.add('fade-in');
                         setTimeout(() => {
                             project.style.display = 'flex';
-                        }, 400); 
+                        }, 400);
                     } else {
                         project.classList.remove('fade-in');
                         project.classList.add('fade-out');
@@ -520,15 +556,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         }, 400);
                     }
                 })
-                
+
             });
-            
+
             applyTransition(tabElement, effects.slide.down, () => {
                 tabsContainer.appendChild(tabElement);
             }, index * 100);
         });
-    }   
-    
+    }
+
     // Modal Elements
     const modal = document.getElementById('general-modal');
     const modalBody = modal.querySelector('.modal-body');
@@ -551,7 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 case 'SKILL_BADGES':
                     animateSkillContent();
                     break;
-            
+
                 default:
                     break;
             }
@@ -682,12 +718,57 @@ document.addEventListener("DOMContentLoaded", () => {
         openModal(content);
     }
 
+    function openContactConfirm(data) {
+        const content = `
+        <h2>${data.text}</h2>
+
+        <p style="
+            margin: 1rem 0 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        ">
+            ${data.greetText || ''}
+        </p>
+
+        <div style="
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        ">
+            <a 
+                target = "_blank"
+                href="${data.email.href}" 
+                class="${data.email.class || 'btn btn-primary'}"
+            >
+                Email
+            </a>
+
+            <a 
+                target = "_blank"
+                href="${data.whatsapp.href}" 
+                class="${data.whatsapp.class || 'btn btn-outline'}"
+            >
+                WhatsApp
+            </a>
+        </div>
+
+        ${data.altText
+                ? `<small style="opacity:0.6;">${data.altText}</small>`
+                : ''
+            }
+    `;
+
+        openModal(content);
+    }
+
+
     // Retrieve saved language from localStorage or set default to 'en-EN'
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'en-EN';
     if (languageSelector) {
         languageSelector.value = savedLanguage;
     }
-    
+
     // Load the saved language content
     loadContent(savedLanguage);
 

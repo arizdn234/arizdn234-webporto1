@@ -70,7 +70,7 @@
   },
   "header": {
     "greeting": "Hi, I'm Ari Zidan",
-    "description": "I’m a back-end focused software engineer with experience building APIs, data-driven systems, and scalable backend services. I enjoy working close to the system layer—designing clean architectures, managing databases, and solving problems with a structured and analytical approach. I’m comfortable collaborating in teams and turning complex requirements into maintainable solutions.",
+    "description": "I’m a backend-focused software engineer with experience building APIs, data-driven systems, and scalable backend services. I enjoy working close to the system layer, where I design clean architectures, manage databases, and solve complex problems with a structured and analytical approach. I’m comfortable collaborating in cross-functional teams and translating complex requirements into maintainable, reliable solutions.",
     "buttons": [
       {
         "text": "Curriculum Vitae",
@@ -85,20 +85,38 @@
       },
       {
         "text": "Get in Touch",
-        "href": "mailto:zidanerizal17@gmail.com",
-        "class": "btn btn-white"
+        "greetText": "Let’s connect. Choose how you’d like to reach out.",
+        "altText": "Usually replies within 24 hours.",
+        "email": {
+          "href": "mailto:zidanerizal17@gmail.com",
+          "class": "btn btn-white"
+        },
+        "whatsapp": {
+          "href": "https://wa.me/6281529474830?text=Hi%20bruh..%20I%20want%20to%20offer...",
+          "class": "btn btn-white"
+        }
       }
     ],
     "image": "profile.jpeg",
     "imageSecret": "profile2.jpg",
     "socialLinks": [
       {
-        "icon": "fab fa-linkedin",
-        "href": "https://www.linkedin.com/in/arizidan"
+        "key": "instagram",
+        "icon": "fab fa-instagram",
+        "href": "https://www.instagram.com/z.id21",
+        "label": "Instagram"
       },
       {
+        "key": "linkedin",
+        "icon": "fab fa-linkedin",
+        "href": "https://www.linkedin.com/in/arizidan",
+        "label": "LinkedIn"
+      },
+      {
+        "key": "github",
         "icon": "fab fa-github",
-        "href": "https://github.com/arizdn234"
+        "href": "https://github.com/arizdn234",
+        "label": "GitHub"
       }
     ]
   },
@@ -123,12 +141,12 @@
     ],
     "subtitle": "Back-end Software Engineer",
     "paragraphs": [
-      "I am a back-end focused software engineer with hands-on experience in designing, developing, and maintaining reliable and scalable backend systems. I primarily work with Go, Python, JavaScript, PHP, and SQL to build clean, maintainable, and performance-oriented applications.",
-      "My work mainly revolves around backend architecture, RESTful API development, and database-driven systems. I have experience working with relational databases such as PostgreSQL and MySQL, as well as NoSQL solutions like MongoDB, ensuring efficient data modeling, querying, and optimization.",
-      "I am familiar with various Object-Relational Mapping (ORM) tools including GORM, Prisma, Sequelize, and SQLAlchemy, which allow me to write structured, maintainable code while maintaining strong control over database performance and integrity.",
-      "In addition to backend development, I have practical experience with Docker for containerization, GitHub for version control and collaboration, and Postman for API testing and validation. These tools support my workflow in building, testing, and deploying backend services efficiently.",
-      "Beyond technical skills, I value clear communication, responsibility, and collaboration. I approach problem-solving with a structured and analytical mindset, breaking down complex requirements into manageable solutions that align with business needs.",
-      "I am highly motivated to continuously improve my backend expertise and stay up to date with modern technologies, best practices, and system design principles to deliver long-term, sustainable software solutions."
+      "I am a backend-focused software engineer with hands-on experience designing, developing, and maintaining reliable, scalable backend systems. I primarily work with Go, Python, JavaScript, PHP, and SQL to build clean, maintainable, and performance-oriented applications.",
+      "My work focuses on backend architecture, RESTful API development, and database-driven systems. I have experience with relational databases such as PostgreSQL and MySQL, as well as NoSQL solutions like MongoDB, ensuring efficient data modeling, querying, and optimization.",
+      "I am familiar with various Object-Relational Mapping (ORM) tools, including GORM, Prisma, Sequelize, and SQLAlchemy, which help me write structured, maintainable code while maintaining strong control over database performance and data integrity.",
+      "In addition to backend development, I have hands-on experience with Docker for containerization, GitHub for version control and collaboration, and Postman for API testing and validation. These tools support my workflow in building, testing, and deploying backend services efficiently.",
+      "Beyond technical skills, I value clear communication, responsibility, and collaboration. I approach problem-solving with a structured and analytical mindset, breaking down complex requirements into manageable solutions aligned with business needs.",
+      "I am highly motivated to continuously improve my backend expertise and stay up to date with modern technologies, best practices, and system design principles to deliver sustainable, long-term software solutions."
     ],
     "expandButton": {
       "expandTrue": "See More",
@@ -136,8 +154,16 @@
     },
     "ctaButton": {
       "text": "Get in Touch",
-      "href": "mailto:zidanerizal17@gmail.com",
-      "class": "btn btn-white"
+      "greetText": "Let’s connect. Choose how you’d like to reach out.",
+      "altText": "Usually replies within 24 hours.",
+      "email": {
+        "href": "mailto:zidanerizal17@gmail.com",
+        "class": "btn btn-white"
+      },
+      "whatsapp": {
+        "href": "https://wa.me/6281529474830?text=Hi%20bruh..%20I%20want%20to%20offer...",
+        "class": "btn btn-white"
+      }
     }
   },
   "skills": {
@@ -168,7 +194,7 @@
           "key": "databases",
           "icon": "fas fa-database",
           "title": "Databases",
-          "description": "Databases I work with for transactional and data-driven systems.",
+          "description": "Databases used for transactional, analytical, and data-driven backend systems.",
           "skills": [
             "PostgreSQL",
             "MySQL",
@@ -179,10 +205,26 @@
           "helper_text": "Tap for more details"
         },
         {
+          "key": "cache_search",
+          "icon": "fas fa-bolt",
+          "title": "Cache & Search",
+          "description": "In-memory caching and search engines for performance optimization and fast data retrieval.",
+          "skills": ["Redis", "Elasticsearch"],
+          "helper_text": "Tap for more details"
+        },
+        {
+          "key": "messaging",
+          "icon": "fas fa-stream",
+          "title": "Messaging & Streaming",
+          "description": "Message brokers and event streaming platforms for asynchronous and distributed systems.",
+          "skills": ["Apache Kafka"],
+          "helper_text": "Tap for more details"
+        },
+        {
           "key": "languages",
           "icon": "fas fa-laptop-code",
           "title": "Backend Languages",
-          "description": "Primary programming languages I use for backend development.",
+          "description": "Primary programming languages used for backend and system development.",
           "skills": ["Go (Golang)", "Python", "JavaScript", "PHP", "SQL"],
           "helper_text": "Tap for more details"
         },
@@ -190,16 +232,17 @@
           "key": "frameworks",
           "icon": "fas fa-globe",
           "title": "Backend Frameworks",
-          "description": "Frameworks used to build APIs and backend services.",
+          "description": "Frameworks for building RESTful APIs and backend services.",
           "skills": [
             "Gin Gonic (Go)",
-            "Gofiber (Go)",
+            "GoFiber (Go)",
+            "Go Kratos (Microservices)",
             "Django (Python)",
             "Flask (Python)",
             "FastAPI (Python)",
             "Express.js (Node.js)",
             "Laravel (PHP)",
-            "Codeigniter (PHP)"
+            "CodeIgniter (PHP)"
           ],
           "helper_text": "Tap for more details"
         },
@@ -207,9 +250,10 @@
           "key": "orm",
           "icon": "fas fa-code",
           "title": "ORM & Data Access",
-          "description": "Tools for interacting with databases in a structured and maintainable way.",
+          "description": "ORMs and data access tools for structured, maintainable, and efficient database interactions.",
           "skills": [
             "GORM (Go)",
+            "Ent (Go)",
             "Prisma ORM",
             "Sequelize.js",
             "Eloquent (Laravel)",
@@ -218,10 +262,23 @@
           "helper_text": "Tap for more details"
         },
         {
+          "key": "architecture",
+          "icon": "fas fa-network-wired",
+          "title": "Microservices & Architecture",
+          "description": "Tools and patterns for building scalable, distributed, and service-oriented systems.",
+          "skills": [
+            "Go Kratos",
+            "gRPC",
+            "RESTful APIs",
+            "Event-driven Architecture"
+          ],
+          "helper_text": "Tap for more details"
+        },
+        {
           "key": "devops",
           "icon": "fas fa-tools",
           "title": "DevOps & Tooling",
-          "description": "Tools used for development workflow, containerization, and collaboration.",
+          "description": "Tools for containerization, collaboration, testing, and backend development workflows.",
           "skills": ["Docker", "GitHub", "Postman"],
           "helper_text": "Tap for more details"
         },
@@ -229,7 +286,7 @@
           "key": "frontend",
           "icon": "fas fa-paint-brush",
           "title": "Frontend (Supporting)",
-          "description": "Frontend tools used mainly to support backend-driven applications.",
+          "description": "Frontend tools used mainly to support backend-driven and API-first applications.",
           "skills": [
             "TailwindCSS",
             "Bootstrap",

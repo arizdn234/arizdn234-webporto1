@@ -364,10 +364,13 @@ nav {
 .nav-scroll #language-selector {
     color: var(--navBlurContrast);
     border: 1px solid var(--navBlurContrast);
-    border-bottom: 3px solid var(--navBlurContrast);
+    /* border-bottom: 3px solid var(--navBlurContrast); */
     font-variant: normal;
-    border-left: 3px solid var(--navBlurContrast);
-    border-bottom: 3px solid var(--navBlurContrast);
+
+    border-left: 4px solid var(--navBlurContrast);
+    border-bottom: 4px solid var(--navBlurContrast);
+    /* border-left: 3px solid var(--navBlurContrast);
+    border-bottom: 3px solid var(--navBlurContrast); */
 }
 
 .nav-scroll #language-selector:hover {
@@ -424,9 +427,9 @@ nav {
 }
 
 .nav-links li a:hover {
-    transform: translateY(-0.2rem);
+    /* transform: translateY(-0.2rem); */
     color: var(--primary);
-    border-bottom: 1px solid #008080;
+    border-bottom: 1px solid var(--primary);
     /* border-radius: 15px; */
 }
 
@@ -564,6 +567,10 @@ body.modal-open {
 
 .skill-group-header {
     margin-bottom: .5rem;
+}
+
+.m-desc {
+    margin-top: 1em;
 }
 
 .skill-group-helper-text {
