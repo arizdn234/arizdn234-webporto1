@@ -494,6 +494,10 @@ document.addEventListener("DOMContentLoaded", () => {
             applyTransition(projectCard, effects.fade, () => {
                 projectsContainer.appendChild(projectCard);
             }, index * 200);
+
+            projectCard.addEventListener("click", () => {
+                openProjectDetail(project);
+            });
         });
 
         setTimeout(() => {
@@ -670,17 +674,124 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function openProject(project) {
-        const content = `
-            <h2>${project.title}</h2>
-            <img src="images/${project.image}" alt="${project.title}" style="width:100%;border-radius:8px;">
-            <p>${project.description}</p>
-            <div class="project-links">
-                ${project.links.map(link => `<a href="${link.href}" target="_blank">${link.text}</a>`).join('')}
+    function openProjectDetail(project) {
+
+        const renderStackBadges = () => {
+            if (!project.stack) return '';
+
+            return Object.values(project.stack)
+                .flat()
+                .map(item => `<span class="badge">${item}</span>`)
+                .join('');
+        };
+
+        const imageSrc = project.image?.trim()
+            ? `images/${project.image}`
+            : 'images/no-image.svg';
+
+        const contentHTML = `
+        <div class="project-modal-wrapper">
+
+            <!-- IMAGE -->
+            <div class="project-image-wrapper">
+                <img
+                    src="${imageSrc}"
+                    alt="${project.title || 'Project image'}"
+                    class="project-image"
+                />
             </div>
-        `;
-        openModal(content);
+
+            <!-- TITLE -->
+            <h2 class="project-title">
+                ${project.title || 'Untitled Project'}
+            </h2>
+
+            <!-- SUMMARY -->
+            <p class="project-summary">
+                ${project.summary || project.description || ''}
+            </p>
+
+            <!-- STACK -->
+            ${project.stack ? `
+                <div class="project-stack">
+                    <h4 class="section-label">Tech Stack</h4>
+                    <div class="skill-badges m-badges">
+                        ${renderStackBadges()}
+                    </div>
+                </div>
+            ` : ''}
+
+            <!-- DETAILS -->
+            <div class="project-details">
+
+                ${project.problem_statement ? `
+                    <section class="project-detail">
+                        <h4>Problem</h4>
+                        <p class="problem-text">${project.problem_statement}</p>
+                    </section>
+                ` : ''}
+
+                ${project.features?.length ? `
+                    <section class="project-detail">
+                        <h4>Features</h4>
+                        <ul>
+                            ${project.features.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </section>
+                ` : ''}
+
+                ${project.contribution?.details?.length ? `
+                    <section class="project-detail">
+                        <h4>Contribution</h4>
+                        <ul>
+                            ${project.contribution.details.map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </section>
+                ` : ''}
+
+                ${project.tradeoffs?.length ? `
+                    <section class="project-detail">
+                        <h4>Trade-offs</h4>
+                        <ul>
+                            ${project.tradeoffs.map(t => `<li>${t}</li>`).join('')}
+                        </ul>
+                    </section>
+                ` : ''}
+
+                ${project.impact?.length ? `
+                    <section class="project-detail">
+                        <h4>Impact</h4>
+                        <ul>
+                            ${project.impact.map(i => `<li>${i}</li>`).join('')}
+                        </ul>
+                    </section>
+                ` : ''}
+
+                ${project.links?.length ? `
+                    <div class="project-links">
+                        ${project.links.map(link => `
+                            <a
+                                href="${link.href || '#'}"
+                                target="_blank"
+                                class="${link.class || 'btn btn-sm'}"
+                            >
+                                ${link.text}
+                            </a>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+            </div>
+        </div>
+    `;
+
+        openModal(contentHTML);
     }
+
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
 
     function openCV(data) {
         const {

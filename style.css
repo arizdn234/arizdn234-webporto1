@@ -876,6 +876,62 @@ header {
     opacity: .7;
 }
 
+/* =========================
+   PROJECT DETAILS
+========================= */
+
+.project-image-wrapper {
+    width: 100%;
+    margin-bottom: 1.25rem;
+}
+
+.project-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f4f4f4;
+}
+
+.project-details {
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.project-detail {
+    padding: 0;
+}
+
+.problem-text {
+    margin: 0;
+    text-align: start;
+    width: fit-content;
+}
+
+.project-details section {
+    margin-bottom: 1.75rem;
+}
+
+.project-details h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.project-details p,
+.project-details li {
+    color: var(--light);
+}
+
+.project-details ul {
+    padding-left: 1.1rem;
+}
+
+.project-details li {
+    margin-bottom: 0.35rem;
+}
+
+
 
 /* --- contact --- */
 .container-contact {
