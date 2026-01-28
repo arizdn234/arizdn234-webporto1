@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btns[0].innerText = header.buttons[0].text;
             btns[0].href = header.buttons[0].href;
 
-            // 👇 INTERCEPT CLICK
+            // INTERCEPT CLICK
             btns[0].onclick = (e) => {
                 e.preventDefault();
                 openCV(header.buttons[0]);
@@ -261,22 +261,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const socialContainer = document.getElementById('social-links');
 
-        if (socialContainer && header.socialLinks) {
+        if (socialContainer && Array.isArray(header.socialLinks)) {
             socialContainer.innerHTML = '';
 
             header.socialLinks.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link.href;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.setAttribute('aria-label', link.label || '');
+                const hasValidLink =
+                    link.href &&
+                    !link.href.includes('your');
+
+                const el = document.createElement(hasValidLink ? 'a' : 'span');
+
+                if (hasValidLink) {
+                    el.href = link.href;
+                    el.target = '_blank';
+                    el.rel = 'noopener noreferrer';
+                    el.title = link.label || 'Open link';
+                } else {
+                    el.classList.add('disabled');
+                    el.setAttribute('aria-hidden', 'true');
+                    el.title = `${link.label || 'This link'} (coming soon)`;
+                }
+
+                el.setAttribute('aria-label', link.label || link.key || '');
 
                 const icon = document.createElement('i');
                 icon.className = link.icon;
 
-                a.appendChild(icon);
-                socialContainer.appendChild(a);
+                el.appendChild(icon);
+                socialContainer.appendChild(el);
             });
+
         }
 
     }

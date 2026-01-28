@@ -101,22 +101,67 @@
     "imageSecret": "profile2.jpg",
     "socialLinks": [
       {
-        "key": "instagram",
-        "icon": "fab fa-instagram",
-        "href": "https://www.instagram.com/z.id21",
-        "label": "Instagram"
-      },
-      {
         "key": "linkedin",
         "icon": "fab fa-linkedin",
         "href": "https://www.linkedin.com/in/arizidan",
-        "label": "LinkedIn"
+        "label": "LinkedIn",
+        "visible": true
       },
       {
         "key": "github",
         "icon": "fab fa-github",
         "href": "https://github.com/arizdn234",
-        "label": "GitHub"
+        "label": "GitHub",
+        "visible": true
+      },
+      {
+        "key": "instagram",
+        "icon": "fab fa-instagram",
+        "href": "https://www.instagram.com/z.id21",
+        "label": "Instagram",
+        "visible": true
+      },
+      {
+        "key": "facebook",
+        "icon": "fab fa-facebook",
+        "href": "https://www.facebook.com/yourusername",
+        "label": "Facebook",
+        "visible": false
+      },
+      {
+        "key": "twitter",
+        "icon": "fab fa-x-twitter",
+        "href": "https://twitter.com/yourusername",
+        "label": "X (Twitter)",
+        "visible": false
+      },
+      {
+        "key": "leetcode",
+        "icon": "fas fa-code",
+        "href": "https://leetcode.com/yourusername",
+        "label": "LeetCode",
+        "visible": false
+      },
+      {
+        "key": "hackerrank",
+        "icon": "fab fa-hackerrank",
+        "href": "https://www.hackerrank.com/yourusername",
+        "label": "HackerRank",
+        "visible": false
+      },
+      {
+        "key": "kaggle",
+        "icon": "fab fa-kaggle",
+        "href": "https://www.kaggle.com/yourusername",
+        "label": "Kaggle",
+        "visible": false
+      },
+      {
+        "key": "youtube",
+        "icon": "fab fa-youtube",
+        "href": "https://www.youtube.com/@yourchannel",
+        "label": "YouTube",
+        "visible": false
       }
     ]
   },

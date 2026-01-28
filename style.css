@@ -660,7 +660,6 @@ header {
 }
 
 .social-links {
-    margin-left: 1em;
     position: absolute;
     bottom: 2rem;
     display: flex;
@@ -677,6 +676,17 @@ header {
 .social-links a:hover {
     color: var(--primary);
     transform: translateY(-0.2rem);
+}
+
+.social-links .disabled {
+    opacity: 0.4;
+    cursor: default;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.social-links .disabled:hover {
+    transform: none;
 }
 
 .HireMe {
@@ -910,7 +920,7 @@ header {
 .project-stack .section-label {
     font-size: 1rem;
     font-weight: bold;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--light);
     padding-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -921,7 +931,7 @@ header {
 
 .project-details {
     margin-top: 2rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--light);
     padding-top: 1.5rem;
     margin: .5rem .3rem;
 }
@@ -1258,10 +1268,13 @@ footer {
     }
 
     .social-links {
-        justify-content: center;
         position: relative;
-        padding-top: 1.5rem;
-        padding-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 1.5rem;
+        padding-inline: 1rem;
+        margin: 1rem 0;
     }
 
     .header-left {
