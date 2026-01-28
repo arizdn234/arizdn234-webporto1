@@ -726,7 +726,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 ${project.problem_statement ? `
                     <section class="project-detail">
-                        <h4>Problem</h4>
+                        <h4>Objective</h4>
                         <p class="problem-text">${project.problem_statement}</p>
                     </section>
                 ` : ''}

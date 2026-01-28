@@ -892,10 +892,32 @@ header {
     background: #f4f4f4;
 }
 
+.project-summary {
+    font-size: 1rem;
+    margin: .5rem .2rem;
+}
+
+.project-stack {
+    margin: .5rem .2rem;
+}
+
+.project-stack .section-label {
+    font-size: 1rem;
+    font-weight: bold;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.project-stack .skill-badges {
+    margin-bottom: 1rem;
+}
+
 .project-details {
     margin-top: 2rem;
     border-top: 1px solid #eee;
     padding-top: 1.5rem;
+    margin: .5rem .2rem;
 }
 
 .project-detail {
@@ -906,6 +928,8 @@ header {
     margin: 0;
     text-align: start;
     width: fit-content;
+    margin: 0 .2rem;
+
 }
 
 .project-details section {
@@ -914,7 +938,7 @@ header {
 
 .project-details h4 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
     margin-bottom: 0.4rem;
 }
 
